@@ -1,5 +1,5 @@
 {
-  "name": "famousAngularStarter",
+  "name": "flickr-client",
   "version": "0.0.1",
   "dependencies": {
     "gulp-haml": "0.0.8",

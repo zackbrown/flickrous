@@ -1,6 +1,7 @@
 {
   "name": "famousAngularStarter",
   "version": "0.2.0",
+  "private": "true",
   "dependencies": {
     "angular": "1.2.21",
     "angular-animate": "1.2.21",

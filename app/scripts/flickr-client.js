@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('famousAngularStarter',
+angular.module('flickr-client',
   ['ngAnimate', 'ngCookies',
     'ngTouch', 'ngSanitize',
     'ngResource', 'ui.router',
@@ -10,11 +10,6 @@ angular.module('famousAngularStarter',
       .state('home', {
         url: '/',
         templateUrl: 'partials/main.html',
-        controller: 'MainCtrl'
-      })
-      .state('jade', {
-        url: '/jade',
-        templateUrl: 'partials/jade.html',
         controller: 'MainCtrl'
       });
 

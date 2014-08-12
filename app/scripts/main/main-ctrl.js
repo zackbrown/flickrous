@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('famousAngularStarter')
+angular.module('flickr-client')
   .controller('MainCtrl', function ($scope, $famous) {
     var Transitionable = $famous['famous/transitions/Transitionable'];
     var Timer = $famous['famous/utilities/Timer'];
