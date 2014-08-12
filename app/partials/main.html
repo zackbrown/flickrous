@@ -1,25 +1,18 @@
-<fa-app class="full-screen">
-
-  <!-- Container modifier, which we're rotating over the y axis -->
-  <fa-modifier fa-origin="[.5, .5]" fa-rotate-y="rotateY.get()">
-
-    <!-- Front face -->
-    <fa-surface fa-size="[true, true]" fa-color="'rgb(255,255,250)'">
-      <img class="logo" src="images/famous-logo.svg" style="width: 200px; height: 200px;"/>
-    </fa-surface>
-
-    <!-- Back face:  same image, rotated pi radians -->
-    <fa-modifier fa-rotate-y="3.14159">
-      <fa-surface fa-size="[true, true]" fa-color="'rgb(255,255,250)'">
-        <img class="logo" src="images/famous-logo.svg" style="width: 200px; height: 200px;" />
-      </fa-surface>
-    </fa-modifier>
-
-  </fa-modifier>
-
-  <fa-modifier fa-origin="[.5, .9]" fa-size="[200, 100]">
-    <fa-surface>
-      <input style="width: 100%; text-align: center;" type="range" min="10" max="100" ng-model="spinner.speed" />
-    </fa-surface>
-  </fa-modifier>
+<fa-app style="width: 320px; height: 568px;">
+  <fa-scroll-view fa-pipe-from="scrollHandler">
+    <fa-view ng-repeat="photo in photos"  fa-size="[undefined, 325]">
+      <fa-modifier fa-size="[undefined, 325]" fa-rotate="getRotate()" fa-align="[.5, .5]">
+        <fa-modifier fa-origin="[.5, .5]" fa-translate="[-100, -100, 100]">
+          <fa-cuboid fa-dimensions="[200, 200, 200]">
+            <fa-surface fa-index="0" fa-size="[200, 200]" fa-background-color="'#333'" fa-pipe-to="scrollHandler">
+              <div style="width: 200px; height: 200px; overflow: hidden;">
+                <img style="width: 200px;" ng-src="{{photo}}"/>
+              </div>
+            </fa-surface>
+            <fa-surface fa-size="[200, 200]" fa-background-color="color" ng-repeat="color in colors" fa-pipe-to="scrollHandler"></fa-surface>
+          </fa-cuboid>
+        </fa-modifier>
+      </fa-modifier>
+    </fa-view>
+  </fa-scroll-view>
 </fa-app>

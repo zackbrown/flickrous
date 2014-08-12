@@ -1,5 +1,5 @@
 <!doctype html>
-<html class="no-js" ng-app="famousAngularStarter">
+<html class="no-js" ng-app="flickr-client">
   <head>
     <meta charset="utf-8">
     <title>Famo.us/Angular</title>
@@ -34,13 +34,12 @@
     <script src="bower_components/famous/famous-global.js"></script>
     <script src="bower_components/famous-angular/dist/famous-angular.js"></script>
 
-    <!-- build:js({app,.tmp}) scripts/main.js -->
     <script src="scripts/flickr-client.js"></script>
+    <script src="scripts/lib/fa-cuboid.js"></script>
     <script src="scripts/main/main-ctrl.js"></script>
-    <!-- inject:partials -->
-    <!-- endinject -->
-    <script src="scripts/services/config.js"></script>
-    <!-- endbuild -->
+    <script src="scripts/main/config-svc.js"></script>
+    <script src="scripts/main/flickr-svc.js"></script>
+    <script src="scripts/main/photo-cube-dir.js"></script>
 
   </body>
 </html>
