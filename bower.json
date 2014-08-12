@@ -11,7 +11,7 @@
     "angular-ui-router": "0.2.x",
     "angular-route": "1.2.21",
     "bootstrap-sass-official": "3.1.1",
-    "famous-angular": "0.2.0",
+    "famous-angular": "https://github.com/Famous/famous-angular.git#master",
     "underscore": "~1.6.0"
   },
   "devDependencies": {
