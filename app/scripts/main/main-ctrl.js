@@ -41,5 +41,5 @@ angular.module('flickr-client')
 
     $scope.loadPhotos('cute kitten');
 
-    $scope.photos = [{promise: {success: angular.noop, error: angular.noop}}];
+    $scope.photos = [];
   });
