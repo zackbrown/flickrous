@@ -6,14 +6,17 @@ angular.module('flickr-client')
       return "https://api.flickr.com/services/rest/?format=json&jsoncallback=JSON_CALLBACK&api_key="+config.getAPIKey()+"&method=";
     }
 
+    var PER_PAGE = 50;
+
     return {
       //gets a list of photos, returns an object containing the string and a promise
       getPhotoSearchList: function(searchTerm){
-        var url = _getBaseUrl() + "flickr.photos.search&per_page=25&text=" + searchTerm;
+        var url = _getBaseUrl() + "flickr.photos.search&in_gallery=true&per_page="+PER_PAGE+"&text=" + searchTerm;
         return $http.jsonp(url);
       },
       getPhotosByGalleryId: function(galleryId){
-
+        var url = _getBaseUrl() + "flickr.galleries.getPhotos&per_page="+PER_PAGE+"&gallery_id=" + galleryId;
+        return $http.jsonp(url);
       },
       //expects photo info in the API format, returns a url string and a promise loading that string (for a loading indicator)
       getPhotoUrl: function(photoInfo){
@@ -26,8 +29,11 @@ angular.module('flickr-client')
         url = url.replace('{size}', size);
         return url;
       },
-      knownGallerys: {
-        ORIGAMI: 72157645827212930
+      GALLERIES: {
+        ORIGAMI: "66911286-72157645827212930",
+        CLOUDS: "66911286-72157645820044028",
+        COWS: "66911286-72157645071513729",
+        OCEAN: "66911286-72157644620926147"
       }
     };
   });

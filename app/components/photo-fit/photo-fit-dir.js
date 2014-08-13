@@ -25,6 +25,9 @@ angular.module('flickr-client')
           },
           post: function(scope, element, attrs){
 
+            //TODO:  set up watching and reevaling for dimensions.
+            //       will need to recalculate the stuff in the image
+            //       onload callback, too.
             scope.url = scope.$eval(attrs.url);
             scope.dimensions = scope.$eval(attrs.dimensions);
 
