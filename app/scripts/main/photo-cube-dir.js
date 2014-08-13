@@ -15,6 +15,7 @@ angular.module('flickr-client')
     return {
       templateUrl: 'partials/photo-cube.html',
       scope: true,
+      controller: 'PhotoCubeCtrl',
       restrict: 'EA',
       compile: function(tElement, tAttrs, transclude){
         var Modifier = $famous['famous/core/Modifier'];
@@ -29,7 +30,6 @@ angular.module('flickr-client')
           },
           post: function(scope, element, attrs){
 
-            console.log('compiling')
             scope.photo = scope.$eval(attrs.photo);
             var _img = new Image();
             _img.src = scope.photo;

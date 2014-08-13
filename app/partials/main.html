@@ -1,18 +1,8 @@
-<fa-app style="width: 320px; height: 568px;">
+
+<fa-app class="full-screen">
   <fa-scroll-view fa-pipe-from="scrollHandler">
-    <fa-view ng-repeat="photo in photos"  fa-size="[undefined, 325]">
-      <fa-modifier fa-size="[undefined, 325]" fa-rotate="getRotate()" fa-align="[.5, .5]">
-        <fa-modifier fa-origin="[.5, .5]" fa-translate="[-100, -100, 100]">
-          <fa-cuboid fa-dimensions="[200, 200, 200]">
-            <fa-surface fa-index="0" fa-size="[200, 200]" fa-background-color="'#333'" fa-pipe-to="scrollHandler">
-              <div style="width: 200px; height: 200px; overflow: hidden;">
-                <img style="width: 200px;" ng-src="{{photo}}"/>
-              </div>
-            </fa-surface>
-            <fa-surface fa-size="[200, 200]" fa-background-color="color" ng-repeat="color in colors" fa-pipe-to="scrollHandler"></fa-surface>
-          </fa-cuboid>
-        </fa-modifier>
-      </fa-modifier>
+    <fa-view ng-repeat="photo in photos"  fa-size="[320, 320]">
+      <photo-cube photo="photo"></photo-cube>
     </fa-view>
   </fa-scroll-view>
 </fa-app>

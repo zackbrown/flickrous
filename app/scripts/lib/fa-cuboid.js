@@ -29,9 +29,9 @@ angular.module('flickr-client')
 
 
             //TODO:  manage origin and align?  will this be necessary?
-            //TODO:  set up watch/observe and update everything accordingly
 
             var _dimens = scope.$eval(attrs.faDimensions);
+
 
             var PI_OVER_2 = Math.PI / 2;
             var PI = Math.PI;
@@ -43,6 +43,23 @@ angular.module('flickr-client')
               /*left  */ {origin: [0,0], translate: [0,0,-_dimens[2]], rotate: [0, -PI_OVER_2, 0], size: [_dimens[2], _dimens[1]]},
               /*back  */ {origin: [0,0], translate: [_dimens[0],0,-_dimens[2]], rotate: [0, PI, 0], size: [_dimens[0], _dimens[1]]}
             ];
+            
+            //non-performant hack to support updates to fa-dimensions
+            scope.$watchCollection(function(){
+              return scope.$eval(attrs.faDimensions);
+            }, function(newVal, oldVal){
+              _dimens = newVal;
+              _faceSpecs = [
+                /*front */ {origin: [0,0], translate: [0,0,0], rotate: [0,0,0], size: [_dimens[0], _dimens[1]]},
+                /*top   */ {origin: [0,0], translate: [0,0,-_dimens[2]], rotate: [PI_OVER_2, 0, 0], size: [_dimens[0], _dimens[2]]},
+                /*right */ {origin: [0,0], translate: [_dimens[0],0,0], rotate: [0, PI_OVER_2, 0], size: [_dimens[2], _dimens[1]]},
+                /*bottom*/ {origin: [0,0], translate: [0,_dimens[1],0], rotate: [-PI_OVER_2, 0, 0], size: [_dimens[0], _dimens[2]]},
+                /*left  */ {origin: [0,0], translate: [0,0,-_dimens[2]], rotate: [0, -PI_OVER_2, 0], size: [_dimens[2], _dimens[1]]},
+                /*back  */ {origin: [0,0], translate: [_dimens[0],0,-_dimens[2]], rotate: [0, PI, 0], size: [_dimens[0], _dimens[1]]}
+              ];
+              _resequenceChildren();
+            })
+
 
             var _root = new RenderNode();
             var _faces = [new RenderNode(),new RenderNode(),new RenderNode(),new RenderNode(),new RenderNode(),new RenderNode()];

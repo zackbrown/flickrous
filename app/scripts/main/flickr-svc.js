@@ -10,7 +10,6 @@ angular.module('flickr-client')
       //gets a list of photos, returns an object containing the string and a promise
       getPhotoList: function(searchTerm){
         var url = _getBaseUrl() + "flickr.photos.search&per_page=25&text=" + searchTerm;
-        console.log('getting photo list', url)
         return $http.jsonp(url);
       },
       //expects photo info in the API format, returns a url string and a promise loading that string (for a loading indicator)
