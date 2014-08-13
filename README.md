@@ -1,4 +1,4 @@
-flickr-client
-======================
+flickrous
+=========
 
-Simple mobile photo-viewing client built with Famo.us/Angular
+Client for viewing photos from the Flickr API, built with Famo.us/Angular
