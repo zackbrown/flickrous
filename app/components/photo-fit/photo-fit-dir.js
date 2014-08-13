@@ -31,6 +31,10 @@ angular.module('flickr-client')
             scope.url = scope.$eval(attrs.url);
             scope.dimensions = scope.$eval(attrs.dimensions);
 
+            var divElem = element[0].querySelector('div');
+            divElem.style.width = scope.dimensions[0] + 'px';
+            divElem.style.height = scope.dimensions[1] + 'px';
+
             var _img = new Image();
             _img.src = scope.photo;
             scope.loading = true;
@@ -63,12 +67,11 @@ angular.module('flickr-client')
                 yOffset = -(outputHeight - scope.dimensions[1]) / 2;
               }
 
-              scope.xOffset = xOffset;
-              scope.yOffset = yOffset;
-              scope.outputHeight = outputHeight;
-              scope.outputWidth = outputWidth;
+              imgElem.style.width = outputWidth + "px";
+              imgElem.style.height = outputHeight + "px";
+              imgElem.style.top = yOffset + "px";
+              imgElem.style.left = xOffset + "px";
 
-              if(!scope.$$phase) scope.$apply()
             }
 
           }

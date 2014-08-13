@@ -20,9 +20,12 @@ angular.module('flickr-client')
       promise.success(function(data){
         $scope.photos = _.map(data.photos.photo, flickr.getPhotoUrl);
       });
+      promise.error(function(){
+        console.log("API ERROR!", arguments);
+      })
     };
 
-    $scope.loadPhotos('macro');
+    $scope.loadPhotos('starfish');
 
     $scope.photos = [];
   });

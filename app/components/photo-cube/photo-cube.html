@@ -1,13 +1,34 @@
 <fa-modifier fa-rotate="getRotate()" fa-scale="getScale()" fa-size="[320, 320]" fa-align="[.5, .5]" fa-transform-order="['rotate','scale']">
   <fa-modifier fa-origin="[.5, .5]" fa-translate="[-160, -160, 160]">
     <fa-cuboid fa-dimensions="[320, 320, 320]">
+      <!-- Front -->
       <fa-surface fa-index="0" fa-size="[320, 320]" fa-background-color="'#333'" fa-pipe-to="handlers">
         <photo-fit dimensions="[320, 320]" url="photo"></photo-fit>
       </fa-surface>
-      <fa-surface fa-size="[320, 320]" fa-background-color="color" ng-repeat="color in colors" fa-pipe-to="handlers">
-        <!-- Cover top, bottom, back faces -->
-        <photo-fit ng-if="$index % 2 !== 0" dimensions="[320, 320]" url="photo"></photo-fit>
+
+      <!-- Top -->
+      <fa-surface fa-index="1"  fa-pipe-to="handlers">
+        <photo-fit dimensions="[320, 320]" url="photo"></photo-fit>
       </fa-surface>
+
+      <!-- Right -->
+      <fa-surface fa-background-color="'#FFFFFA'" fa-index="2"  fa-pipe-to="handlers">
+      </fa-surface>
+
+      <!-- Bottom -->
+      <fa-surface fa-index="3"  fa-pipe-to="handlers">
+        <photo-fit dimensions="[320, 320]" url="photo"></photo-fit>
+      </fa-surface>
+
+      <!-- Left -->
+      <fa-surface fa-index="4" fa-background-color="'#FFFFFA'" fa-pipe-to="handlers">
+      </fa-surface>
+
+      <!-- Back -->
+      <fa-surface fa-index="5"  fa-pipe-to="handlers">
+        <photo-fit dimensions="[320, 320]" url="photo"></photo-fit>
+      </fa-surface>
+      
     </fa-cuboid>
   </fa-modifier>
 </fa-modifier>

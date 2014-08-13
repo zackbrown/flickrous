@@ -1,13 +1,11 @@
 /**
  * @ngdoc directive
- * @name faCuboid
- * @module famous.angular
+ * @name photo-cube
+ * @module flickr-client
  * @restrict EA
  * @description
- * This directive is used to create reusable cuboid (rectangular prism) shapes
- * with arbitrary content
- * The order of the faces is [Front, Top, Right, Bottom, Left, Back]
- * Order can be managed/enforced with `fa-index`
+ * This directive is used to show a cube of photos along with information
+ * about them
  */
 
 angular.module('flickr-client')
@@ -26,12 +24,9 @@ angular.module('flickr-client')
         return {
           pre: function(scope, element, attrs){
             $famousDecorator.ensureIsolate(scope);
-
           },
           post: function(scope, element, attrs){
-
             scope.photo = scope.$eval(attrs.photo);
-            
           }
         };
       }
