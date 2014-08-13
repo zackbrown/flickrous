@@ -13,6 +13,7 @@ angular.module('flickr-client')
 
 
     var CUBE_SCROLL_SPEED = .005;
+    var DOUBLE_TAP_THRESHOLD = 300;
 
 
     GenericSync.register({
@@ -39,12 +40,23 @@ angular.module('flickr-client')
       {type: "photo"},
       {type: "title"},
       {type: "photo"},
-    ]
+    ];
+
+    $scope.handleDoubleTap = function(){
+
+    };
 
 
     var cubeSync = new GenericSync(["mouse", "touch", "scroll"], {direction: [GenericSync.DIRECTION_X, GenericSync.DIRECTION_Y]});
 
+
+    var _lastSyncStartTime = new Date();
     cubeSync.on('start', function(){
+      var currentTime = new Date();
+
+      if(currentTime - _lastSyncStartTime < DOUBLE_TAP_THRESHOLD){ $scope.handleDoubleTap(); }
+      _lastSyncStartTime = currentTime;
+
       //shrink cube
       _scale.halt();
       _scale.set([.8, .8, .8], TRANSITIONS.SCALE)

@@ -6,19 +6,24 @@ angular.module('flickr-client')
     var Timer = $famous['famous/utilities/Timer'];
     var EventHandler = $famous['famous/core/EventHandler'];
 
-
-
-    var Timer = $famous['famous/utilities/Timer'];
-
-    window.s = $scope;
-
     $scope.scrollHandler = new EventHandler();
+
+    $scope.cubeEnter = function(photo, $done){
+      console.log('enter!');
+      $done();
+    };
+
+    $scope.cubeLeave = function(photo, $done){
+      console.log('leave!');
+      $done();
+    };
 
     $scope.loading = false;
     $scope.loadPhotos = function(searchTerm){
       $scope.loading = true;
       var promise = flickr.getPhotoSearchList(searchTerm);
       promise.success(function(data){
+        $scope.loading = false;
         $scope.photos = _.map(data.photos.photo, function(photo){
           return _.extend(photo, {url: flickr.getPhotoUrl(photo)});
         });
