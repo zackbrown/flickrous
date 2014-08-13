@@ -10,6 +10,7 @@ angular.module('flickr-client')
 
     var Timer = $famous['famous/utilities/Timer'];
 
+    window.s = $scope;
 
     $scope.scrollHandler = new EventHandler();
 
@@ -18,14 +19,16 @@ angular.module('flickr-client')
       $scope.loading = true;
       var promise = flickr.getPhotoSearchList(searchTerm);
       promise.success(function(data){
-        $scope.photos = _.map(data.photos.photo, flickr.getPhotoUrl);
+        $scope.photos = _.map(data.photos.photo, function(photo){
+          return _.extend(photo, {url: flickr.getPhotoUrl(photo)});
+        });
       });
       promise.error(function(){
         console.log("API ERROR!", arguments);
       })
     };
 
-    $scope.loadPhotos('starfish');
+    $scope.loadPhotos('french bulldog');
 
     $scope.photos = [];
   });

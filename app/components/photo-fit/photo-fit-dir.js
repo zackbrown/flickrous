@@ -15,7 +15,7 @@ angular.module('flickr-client')
       templateUrl: 'components/photo-fit/photo-fit.html',
       scope: true,
       controller: function($scope){
-        $scope.dimensions = [0,0]
+        $scope.dimensions = [0,0];
       },
       restrict: 'EA',
       compile: function(tElement, tAttrs, transclude){
@@ -36,7 +36,7 @@ angular.module('flickr-client')
             divElem.style.height = scope.dimensions[1] + 'px';
 
             var _img = new Image();
-            _img.src = scope.photo;
+            _img.src = scope.photo.url;
             scope.loading = true;
 
             var imgElem = element[0].querySelector('img');

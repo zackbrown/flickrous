@@ -21,3 +21,25 @@ body {
     left: 0;
     right: 0;
 }
+
+
+.title-block {
+    width: 270px;
+    margin: 0 auto;
+    color: #06172F;
+}
+
+.title-block h4 {
+    margin-top: 40px;
+    font-size: .75em;
+    color: #3AC3CE;
+}
+
+.title-block p {
+    font-family: serif;
+    font-style: italic;
+    font-size: 1.85em;
+    font-weight: bold;
+}
+
+

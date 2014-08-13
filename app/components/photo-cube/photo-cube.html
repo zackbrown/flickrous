@@ -1,34 +1,31 @@
+
+<!-- These nested modifiers (align outside of origin) are a substitute for fa-cuboid not accepting origin/align -->
 <fa-modifier fa-rotate="getRotate()" fa-scale="getScale()" fa-size="[320, 320]" fa-align="[.5, .5]" fa-transform-order="['rotate','scale']">
   <fa-modifier fa-origin="[.5, .5]" fa-translate="[-160, -160, 160]">
+
     <fa-cuboid fa-dimensions="[320, 320, 320]">
-      <!-- Front -->
-      <fa-surface fa-index="0" fa-size="[320, 320]" fa-background-color="'#333'" fa-pipe-to="handlers">
-        <photo-fit dimensions="[320, 320]" url="photo"></photo-fit>
-      </fa-surface>
+      <fa-view ng-repeat="face in faces" fa-index="$index">
 
-      <!-- Top -->
-      <fa-surface fa-index="1"  fa-pipe-to="handlers">
-        <photo-fit dimensions="[320, 320]" url="photo"></photo-fit>
-      </fa-surface>
+        <!-- Photo panel -->
+        <fa-surface ng-if="face.type === 'photo'" fa-size="[320, 320]" fa-background-color="'#333'" fa-pipe-to="handlers">
+          <photo-fit dimensions="[320, 320]" url="photo.url"></photo-fit>
+        </fa-surface>
 
-      <!-- Right -->
-      <fa-surface fa-background-color="'#FFFFFA'" fa-index="2"  fa-pipe-to="handlers">
-      </fa-surface>
+        <!-- Title panel -->
+        <fa-view ng-if="face.type === 'title'" >
+          <fa-surface fa-background-color="'#FFFFFA'" fa-pipe-to="handlers">
+          </fa-surface>
+          <fa-modifier fa-translate="[0, 0, 1]">
+            <fa-surface fa-size="true" fa-color="'#FFFFFA'" fa-pipe-to="handlers">
+              <div class="title-block">
+                  <h4>TITLE</h4>
+                  <p>{{photo.title}}</p>
+              </div>
+            </fa-surface>
+          </fa-modifier>
+        </fa-view>
 
-      <!-- Bottom -->
-      <fa-surface fa-index="3"  fa-pipe-to="handlers">
-        <photo-fit dimensions="[320, 320]" url="photo"></photo-fit>
-      </fa-surface>
-
-      <!-- Left -->
-      <fa-surface fa-index="4" fa-background-color="'#FFFFFA'" fa-pipe-to="handlers">
-      </fa-surface>
-
-      <!-- Back -->
-      <fa-surface fa-index="5"  fa-pipe-to="handlers">
-        <photo-fit dimensions="[320, 320]" url="photo"></photo-fit>
-      </fa-surface>
-      
+      </fa-view>      
     </fa-cuboid>
   </fa-modifier>
 </fa-modifier>

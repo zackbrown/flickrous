@@ -32,10 +32,17 @@ angular.module('flickr-client')
       }
     }
 
-    $scope.colors = ["#b58900","#cb4b16","#dc322f","#6c71c4","#268bd2"];
+    $scope.faces = [
+      {type: "photo"},
+      {type: "photo"},
+      {type: "title"},
+      {type: "photo"},
+      {type: "title"},
+      {type: "photo"},
+    ]
 
 
-    var cubeSync = new GenericSync(["mouse", "touch"], {direction: [GenericSync.DIRECTION_X, GenericSync.DIRECTION_Y]});
+    var cubeSync = new GenericSync(["mouse", "touch", "scroll"], {direction: [GenericSync.DIRECTION_X, GenericSync.DIRECTION_Y]});
 
     cubeSync.on('start', function(){
       //shrink cube
