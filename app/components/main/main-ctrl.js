@@ -36,7 +36,7 @@ angular.module('flickr-client')
     window.s = $scope;
 
     $scope.search = {
-      term: "french bulldog" //"macro flower", "cloudscape" 
+      term: "cloudscape" //"macro flower", "french bulldog" 
     }
 
     var _scales = {}

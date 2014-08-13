@@ -32,7 +32,7 @@ body {
 .title-block h4 {
     margin-top: 40px;
     font-size: .75em;
-    color: #3AC3CE;
+    color: #FF1981;
 }
 
 .title-block p {
@@ -60,7 +60,7 @@ body {
     left: 80px;
     font-size: 29px;
     top: 9px;
-    color: #3AC3CE;
+    color: #006ADD;
     width: 70%;
     border: none;
     background: none;
