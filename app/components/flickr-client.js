@@ -9,7 +9,7 @@ angular.module('flickr-client',
     $stateProvider
       .state('home', {
         url: '/',
-        templateUrl: 'partials/main.html',
+        templateUrl: 'components/main/main.html',
         controller: 'MainCtrl'
       });
 

@@ -13,7 +13,7 @@
 angular.module('flickr-client')
   .directive('photoCube', ["$famous", "$famousDecorator", function ($famous, $famousDecorator) {
     return {
-      templateUrl: 'partials/photo-cube.html',
+      templateUrl: 'components/photo-cube/photo-cube.html',
       scope: true,
       controller: 'PhotoCubeCtrl',
       restrict: 'EA',
