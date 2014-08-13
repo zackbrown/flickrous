@@ -10,11 +10,9 @@ gulp.task('watch', ['serve'], function () {
     // watch for changes
 
     gulp.watch([
-        'app/partials/**/*.html',
-        'app/partials/**/*.haml',
-        'app/partials/**/*.jade',
+        'app/components/**/*.html',
         'app/styles/**/*.css',
-        'app/scripts/**/*.js',
+        'app/components/**/*.js',
         'app/images/**/*'
     ]).on('change', function (file) {
         gulp.start('build')

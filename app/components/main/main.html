@@ -1,10 +1,27 @@
 
 <fa-app class="full-screen">
+  
+  <!-- Header -->
+  <fa-modifier fa-size="[undefined, 60]" fa-translate="[0, 0, 1000]">
+    <fa-surface>
+      <div class="header">
+        <img src="images/flickrous-dots-01.svg" class="logo" />
+        <form ng-submit="updateSearch()">
+          <input class="search-bar" ng-model="search.term" type="text" ng-submit="updateSearch()" >
+        </form>
+      </div>
+    </fa-surface>
+  </fa-modifier>
+
+  <!-- Body -->
   <fa-scroll-view fa-pipe-from="scrollHandler">
-    <fa-view ng-repeat="photo in photos"  fa-size="[320, 320]">
-      <fa-modifier fa-translate="[0, -124, 0]">
-        <photo-cube photo="photo"></photo-cube>
+    <fa-view ng-repeat="photo in photos"  fa-size="[320, 320]" fa-animate-enter="cubeEnter(photo, $done)">
+      <fa-modifier fa-scale="photo.scale.get()" >
+        <fa-modifier fa-translate="[0, -64, 0]" get-surface>
+          <photo-cube photo="photo"></photo-cube>
+        </fa-modifier>
       </fa-modifier>
     </fa-view>
   </fa-scroll-view>
+  
 </fa-app>
