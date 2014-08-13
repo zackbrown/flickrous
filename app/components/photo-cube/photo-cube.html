@@ -1,16 +1,12 @@
-<fa-modifier fa-rotate="getRotate($index)" fa-size="[320, 400]" fa-align="[.5, .5]">
+<fa-modifier fa-rotate="getRotate()" fa-scale="getScale()" fa-size="[320, 320]" fa-align="[.5, .5]" fa-transform-order="['rotate','scale']">
   <fa-modifier fa-origin="[.5, .5]" fa-translate="[-160, -160, 160]">
     <fa-cuboid fa-dimensions="[320, 320, 320]">
       <fa-surface fa-index="0" fa-size="[320, 320]" fa-background-color="'#333'" fa-pipe-to="handlers">
-        <div style="width: 320px; height: 320px; overflow: hidden;">
-          <img style="width: 320px;" ng-src="{{photo}}"/>
-        </div>
+        <photo-fit dimensions="[320, 320]" url="photo"></photo-fit>
       </fa-surface>
       <fa-surface fa-size="[320, 320]" fa-background-color="color" ng-repeat="color in colors" fa-pipe-to="handlers">
         <!-- Cover top, bottom, back faces -->
-        <div ng-if="$index % 2 !== 0" style="width: 320px; height: 320px; overflow: hidden;">
-          <img style="width: 320px;" ng-src="{{photo}}"/>
-        </div>
+        <photo-fit ng-if="$index % 2 !== 0" dimensions="[320, 320]" url="photo"></photo-fit>
       </fa-surface>
     </fa-cuboid>
   </fa-modifier>

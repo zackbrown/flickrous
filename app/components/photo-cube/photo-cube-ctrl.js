@@ -11,7 +11,6 @@ angular.module('flickr-client')
     var TouchSync   = $famous["famous/inputs/TouchSync"];
     var ScrollSync   = $famous["famous/inputs/ScrollSync"];
 
-    console.log('easing', Easing)
 
     var CUBE_SCROLL_SPEED = .005;
 
@@ -22,33 +21,53 @@ angular.module('flickr-client')
       "scroll": ScrollSync
     });
 
+    var TRANSITIONS = {
+      SCALE: {
+        duration: 333,
+        curve: Easing.outQuint
+      },
+      ROTATE: {
+        duration: 500,
+        curve: Easing.outBounce
+      }
+    }
+
     $scope.colors = ["#b58900","#cb4b16","#dc322f","#6c71c4","#268bd2"];
 
 
     var cubeSync = new GenericSync(["mouse", "touch"], {direction: [GenericSync.DIRECTION_X, GenericSync.DIRECTION_Y]});
 
+    cubeSync.on('start', function(){
+      //shrink cube
+      _scale.halt();
+      _scale.set([.8, .8, .8], TRANSITIONS.SCALE)
+    });
+
     cubeSync.on('update', function(data){
-      console.log('update', data)
       var newRotate = _rotate.get();
       newRotate[0] += data.delta[1] * CUBE_SCROLL_SPEED;
       newRotate[1] += data.delta[0] * CUBE_SCROLL_SPEED;
+
       _rotate.set.call(_rotate, newRotate);
     });
 
     cubeSync.on('end', function(data){
       //handle snapping to nearest facet
-      //since there are 4 faces, we want to snap to y-rotations of 0, π/2, π, 3π/2
       var rotate = _rotate.get().slice(0);
 
       //ideal rotate values
       var idealX = 0;
-      //snap to four faces
+      //since there are 4 faces, we want to snap to y-rotations of 0, π/2, π, 3π/2
       var idealY = Math.PI * Math.round(2 * rotate[1] / Math.PI) / 2;
 
       rotate[0] = idealX;
       rotate[1] = idealY;
 
-      _rotate.set(rotate, {duration: 500, curve: Easing.outBounce});
+
+      _rotate.set(rotate, TRANSITIONS.ROTATE);
+      _scale.halt();
+      //grow cube back
+      _scale.set([1, 1, 1], TRANSITIONS.SCALE)
     })
 
 
@@ -60,8 +79,12 @@ angular.module('flickr-client')
 
     var _rotate = new Transitionable([0,0,0]);
     $scope.getRotate = function(){
-      if(_rotate.get()[1] != 0) console.log(_rotate.get())
       return _rotate.get();
+    };
+
+    var _scale = new Transitionable([1,1,1]);
+    $scope.getScale = function(){
+      return _scale.get();
     }
 
 

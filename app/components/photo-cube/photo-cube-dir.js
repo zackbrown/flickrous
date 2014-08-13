@@ -31,14 +31,7 @@ angular.module('flickr-client')
           post: function(scope, element, attrs){
 
             scope.photo = scope.$eval(attrs.photo);
-            var _img = new Image();
-            _img.src = scope.photo;
-            scope.loading = true;
-
-            _img.onload = function(){
-              scope.loading = false;
-              if(!scope.$$phase) scope.$apply()
-            }
+            
           }
         };
       }

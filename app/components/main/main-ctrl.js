@@ -16,13 +16,13 @@ angular.module('flickr-client')
     $scope.loading = false;
     $scope.loadPhotos = function(searchTerm){
       $scope.loading = true;
-      var promise = flickr.getPhotoList(searchTerm);
+      var promise = flickr.getPhotoSearchList(searchTerm);
       promise.success(function(data){
         $scope.photos = _.map(data.photos.photo, flickr.getPhotoUrl);
       });
     };
 
-    $scope.loadPhotos('pop tarts');
+    $scope.loadPhotos('macro');
 
     $scope.photos = [];
   });

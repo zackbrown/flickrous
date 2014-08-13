@@ -8,9 +8,12 @@ angular.module('flickr-client')
 
     return {
       //gets a list of photos, returns an object containing the string and a promise
-      getPhotoList: function(searchTerm){
+      getPhotoSearchList: function(searchTerm){
         var url = _getBaseUrl() + "flickr.photos.search&per_page=25&text=" + searchTerm;
         return $http.jsonp(url);
+      },
+      getPhotosByGalleryId: function(galleryId){
+
       },
       //expects photo info in the API format, returns a url string and a promise loading that string (for a loading indicator)
       getPhotoUrl: function(photoInfo){
@@ -22,6 +25,9 @@ angular.module('flickr-client')
         url = url.replace('{secret}', photoInfo.secret);
         url = url.replace('{size}', size);
         return url;
+      },
+      knownGallerys: {
+        ORIGAMI: 72157645827212930
       }
     };
   });
