@@ -10,6 +10,10 @@
  * Order can be managed/enforced with `fa-index`
  */
 
+
+ //TODO:  This file is a pre-release version of fa-cuboid that's not yet available in the core library.
+ //       Once it's available, remove this lib folder and just use Famo.us/Angular's fa-cuboid
+
 angular.module('flickr-client')
   .directive('faCuboid', ["$famous", "$famousDecorator", function ($famous, $famousDecorator) {
     return {
