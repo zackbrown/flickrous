@@ -16,8 +16,8 @@
   <!-- Body -->
   <fa-scroll-view fa-pipe-from="scrollHandler">
     <fa-view ng-repeat="photo in photos"  fa-size="[320, 320]" fa-animate-enter="cubeEnter(photo, $done)">
-      <fa-modifier fa-scale="photo.scale.get()" >
-        <fa-modifier fa-translate="[0, -64, 0]" get-surface>
+      <fa-modifier fa-scale="photo.scale.get()" fa-opacity="photo.opacity.get()" >
+        <fa-modifier fa-translate="[0, -64, 0]">
           <photo-cube photo="photo"></photo-cube>
         </fa-modifier>
       </fa-modifier>

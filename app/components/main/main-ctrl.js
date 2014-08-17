@@ -4,6 +4,7 @@ angular.module('flickr-client')
   .controller('MainCtrl', function ($scope, $famous, flickr) {
     var Transitionable = $famous['famous/transitions/Transitionable'];
     var Timer = $famous['famous/utilities/Timer'];
+    var Easing = $famous['famous/transitions/Easing'];
     var EventHandler = $famous['famous/core/EventHandler'];
 
     $scope.scrollHandler = new EventHandler();
@@ -19,12 +20,12 @@ angular.module('flickr-client')
       promise.success(function(data){
         $scope.loading = false;
         $scope.photos = _.map(data.photos.photo, function(photo){
-          var scale = new Transitionable([1, 1, 1]);
-          var rotate = new Transitionable([0, 0, 0]);
+          var scale = new Transitionable([.001, .001, .001]);
+          var opacity = new Transitionable(0);
           return _.extend(photo, {
             url: flickr.getPhotoUrl(photo),
             scale: scale,
-            rotate: rotate
+            opacity: opacity
           });
         });
       });
@@ -41,10 +42,8 @@ angular.module('flickr-client')
 
     var _scales = {}
     $scope.cubeEnter = function(photo, $done){
-      photo.rotate.set([2 * Math.PI, 2 * Math.PI, 2 * Math.PI]);
-      photo.scale.set([.001, .001, .001]);
-      photo.rotate.set([0, 0, 0], {duration: 1000, curve: "easeOut"});
-      photo.scale.set([1, 1, 1], {duration: 1000, curve: "easeOut"}, $done);
+      photo.scale.set([1, 1, 1], {duration: 1000, curve: Easing.outElastic});
+      photo.opacity.set(1, {duration: 1250, curve: "linear"}, $done);
     };
 
     $scope.getScale = function(i){
