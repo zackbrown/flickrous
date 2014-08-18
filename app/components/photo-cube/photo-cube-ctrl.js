@@ -64,7 +64,7 @@ angular.module('flickr-client')
 
     cubeSync.on('update', function(data){
       var newRotate = _rotate.get();
-      newRotate[0] += data.delta[1] * CUBE_SCROLL_SPEED;
+      newRotate[0] -= data.delta[1] * CUBE_SCROLL_SPEED;
       newRotate[1] += data.delta[0] * CUBE_SCROLL_SPEED;
 
       _rotate.set.call(_rotate, newRotate);
